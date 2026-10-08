@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projekt Ústí nad Labem</title>
+    <link rel="icon" type="image/png"
+        href="https://cdn.discordapp.com/attachments/1557803948122046544/1557803966648033431/Game_Ico_1024.png?ex=6ac92180&is=6ac7d000&hm=6626bfe038775195acc8d2022523e1ac6d77a51566b5e7437e8e13609e984b68&">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #101010;
+            color: white
+        }
+
+        .horni-lista {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 67px;
+            background: rgba(18, 18, 18, .94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .logo-link {
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            text-decoration: none
+        }
+
+        .horni-lista-logo {
+            display: block;
+            height: 43px;
+            width: auto;
+            object-fit: contain;
+            transition: opacity .2s ease
+        }
+
+        .logo-link:hover .horni-lista-logo {
+            opacity: .82
+        }
+
+        .horni-lista-stred {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 2px
+        }
+
+        .horni-lista-stred a {
+            position: relative;
+            height: 44px;
+            padding: 0 19px;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, .62);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color .2s ease
+        }
+
+        .horni-lista-stred a:hover {
+            color: white
+        }
+
+        .horni-lista-stred a.aktivni {
+            color: white
+        }
+
+        .horni-lista-stred a.aktivni::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 3px;
+            width: 20px;
+            height: 2px;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 10px
+        }
+
+        .horni-lista-prava {
+            position: absolute;
+            right: 18px;
+            display: flex;
+            align-items: center
+        }
+
+        .uzivatel {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, .68);
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: .2s ease
+        }
+
+        .uzivatel:hover {
+            color: white;
+            background: rgba(255, 255, 255, .08);
+            border-color: rgba(255, 255, 255, .16)
+        }
+
+        .uzivatel svg {
+            width: 21px;
+            height: 21px;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .download-uvod {
+            position: relative;
+            min-height: 56vh;
+            padding: 150px 30px 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, .18), rgba(0, 0, 0, .78)), url("https://cdn.discordapp.com/attachments/1371144623422046378/1556730214837526618/image.png?backend=b2&ex=6ac8853d&is=6ac733bd&hm=a319f641dd1078f2df25765bc0a416a3ec44e7e4371bd273ca0f329b09584c86&");
+            background-size: cover;
+            background-position: center
+        }
+
+        .download-uvod::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #101010);
+            pointer-events: none
+        }
+
+        .download-uvod-obsah {
+            position: relative;
+            z-index: 1;
+            max-width: 800px
+        }
+
+        .download-uvod h1 {
+            margin-bottom: 12px;
+            font-size: 50px;
+            line-height: 1.1;
+            font-weight: 600;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 25px rgba(0, 0, 0, .45)
+        }
+
+        .download-cast {
+            min-height: 600px;
+            padding: 55px 30px 100px;
+            background: #101010
+        }
+
+        .download-obsah {
+            width: 60%;
+            max-width: 1000px;
+            margin: 0 auto
+        }
+
+        .download-karty {
+            display: flex;
+            flex-direction: column;
+            gap: 22px
+        }
+
+        .download-karta {
+            position: relative;
+            width: 100%;
+            min-height: 235px;
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background: #1b1b1b;
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: .2s ease
+        }
+
+        .download-karta:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, .12);
+            background: #1e1e1e
+        }
+
+        .demo-karta {
+            background: #20242b;
+            border: 1px solid rgba(120, 150, 190, 0.18);
+        }
+
+        .demo-karta::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: #7187a5;
+        }
+
+        .demo-karta:hover {
+            background: #232830;
+            border-color: rgba(120, 150, 190, 0.25);
+        }
+
+        .download-karta h2 {
+            margin-bottom: 13px;
+            font-size: 25px;
+            line-height: 1.2;
+            font-weight: 600;
+            color: white
+        }
+
+        .download-karta p {
+            max-width: 700px;
+            margin-bottom: 25px;
+            font-size: 15px;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .65)
+        }
+
+        .demo-karta p {
+            color: rgba(255, 255, 255, .8)
+        }
+
+        .download-tlacitko {
+            width: 190px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f2f2f2;
+            color: #111;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .2s ease
+        }
+
+        .download-tlacitko:hover {
+            background: white;
+            transform: translateY(-1px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, .25)
+        }
+
+        .starsi-verze {
+            display: inline-flex;
+            align-items: center;
+            color: rgba(255, 255, 255, .52);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 8px 0;
+            transition: .2s ease
+        }
+
+        .starsi-verze::after {
+            content: "→";
+            margin-left: 8px;
+            color: rgba(255, 255, 255, .35);
+            transition: .2s ease
+        }
+
+        .starsi-verze:hover {
+            color: white;
+            padding-left: 4px
+        }
+
+        .starsi-verze:hover::after {
+            color: white;
+            transform: translateX(3px)
+        }
+
+        @media(max-width:900px) {
+            .download-obsah {
+                width: 80%
+            }
+        }
+
+        @media(max-width:700px) {
+            .logo-link {
+                left: 12px
+            }
+
+            .horni-lista-logo {
+                height: 37px
+            }
+
+            .horni-lista-stred {
+                gap: 0
+            }
+
+            .horni-lista-stred a {
+                padding: 0 8px;
+                font-size: 12px
+            }
+
+            .horni-lista-prava {
+                right: 7px
+            }
+
+            .uzivatel {
+                width: 38px;
+                height: 38px
+            }
+
+            .download-uvod {
+                min-height: 50vh;
+                padding: 130px 20px 80px
+            }
+
+            .download-uvod h1 {
+                font-size: 36px
+            }
+
+            .download-cast {
+                padding: 45px 20px 70px
+            }
+
+            .download-obsah {
+                width: 100%
+            }
+
+            .download-karta {
+                min-height: 0;
+                padding: 30px;
+                border-radius: 7px
+            }
+
+            .download-karta h2 {
+                font-size: 22px
+            }
+
+            .download-karta p {
+                font-size: 14px
+            }
+        }
+
+        @media(max-width:480px) {
+            .horni-lista-stred a {
+                padding: 0 5px;
+                font-size: 11px
+            }
+
+            .logo-link {
+                left: 8px
+            }
+
+            .horni-lista-logo {
+                max-width: 105px;
+                height: auto
+            }
+
+            .download-uvod h1 {
+                font-size: 32px
+            }
+
+            .download-karta {
+                padding: 25px
+            }
+
+            .download-tlacitko {
+                width: 100%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="horni-lista">
+        <a href="index.html" class="logo-link"><img
+                src="https://cdn.discordapp.com/attachments/1557803948122046544/1557803966992224276/Game_ico_1024_Wide.png?ex=6ac92180&is=6ac7d000&hm=03d49eb0b76ee44d15aa48155017df02f421fd66dfb8e89719f6da089a463aa6&"
+                alt="Logo" class="horni-lista-logo"></a>
+        <div class="horni-lista-stred">
+            <a href="index.html">Home</a>
+            <a href="#">News</a>
+            <a href="download.html" class="aktivni">Download</a>
+            <a href="#">Community</a>
+        </div>
+        <div class="horni-lista-prava">
+            <a href="login.html" class="uzivatel">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+    <main>
+        <section class="download-uvod">
+            <div class="download-uvod-obsah">
+                <h1>Soubory ke stažení</h1>
+            </div>
+        </section>
+        <section class="download-cast">
+            <div class="download-obsah">
+                <div class="download-karty">
+                    <div class="download-karta demo-karta">
+                        <h2>Demo verze</h2>
+                        <p>Demo verze hry obsahuje pár realistických vozidel a linek. Časem do hry přibydou další vozy a
+                            linky. Jelikož se jedná o demo verzi hry, mohou se objevit malé i větší chyby. Každou chybu
+                            se snažíme co nejlépe a nejrychleji opravit.<br><br>Děkujeme moc, že naši hru hrajete a
+                            sdílíte s námi ty nejlepší momenty z našeho projektu!</p>
+                        <a href="#" class="download-tlacitko">Stáhnout demo verzi</a>
+                    </div>
+                    <div class="download-karta">
+                        <h2>Starší verze hry ke stažení</h2>
+                        <p>Zde najdete starší verze hry, které si můžete stáhnout a vyzkoušet. Starší verze mohou
+                            obsahovat více chyb a některé věci nemusí fungovat správně.</p>
+                        <a href="old_versions.html" class="starsi-verze">Seznam starších verzí</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

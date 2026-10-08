@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Přihlášení</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1557803948122046544/1557803966648033431/Game_Ico_1024.png">
+</head>
+
+<body>
+
+<main class="login-stranka">
+
+<div class="login">
+
+    <h1>Přihlášení</h1>
+
+    <form>
+        <input type="email" placeholder="E-mail" required>
+        <input type="password" placeholder="Heslo" required>
+        <button type="submit">Přihlásit se</button>
+    </form>
+
+    <a href="index.html">Zpět na hlavní stránku</a>
+
+</div>
+
+</main>
+
+<style>
+
+.login-stranka {
+    min-height: 100vh;
+    padding: 120px 30px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+        url("https://cdn.discordapp.com/attachments/1557803948122046544/1557803966098841642/IMG_0001.png?ex=6ac92180&is=6ac7d000&hm=2c37379f4cc241b0b0ca4132e19ccde33448a0e47db4ab09766b63d234965cc6&");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login {
+    width: 100%;
+    max-width: 390px;
+    padding: 38px 40px;
+    background: #1b1b1b;
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 8px;
+}
+
+.login h1 {
+    margin: 0 0 28px;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+}
+
+.login input {
+    width: 100%;
+    height: 48px;
+    margin-bottom: 14px;
+    padding: 0 14px;
+    background: #252525;
+    color: white;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 4px;
+    outline: none;
+}
+
+.login input:focus {
+    border-color: rgba(255,255,255,.2);
+}
+
+.login button {
+    width: 100%;
+    height: 48px;
+    margin-top: 5px;
+    border: 0;
+    border-radius: 4px;
+    background: #f2f2f2;
+    color: #111;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login button:hover {
+    background: white;
+}
+
+.login > a {
+    display: block;
+    margin-top: 22px;
+    text-align: center;
+    color: rgba(255,255,255,.45);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login > a:hover {
+    color: white;
+}
+
+.aktivni-uzivatel {
+    color: white;
+    background: rgba(255,255,255,.08);
+}
+
+@media(max-width:700px) {
+    .login-stranka {
+        padding: 110px 20px 50px;
+    }
+
+    .login {
+        padding: 30px;
+    }
+}
+
+@media(max-width:480px) {
+    .login {
+        padding: 25px;
+    }
+}
+
+</style>
+
+</body>
+</html>
