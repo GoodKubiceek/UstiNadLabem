@@ -1,11 +1,17 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 0
+}
+
+html {
+    scroll-behavior: smooth
 }
 
 body {
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #101010;
+    color: white
 }
 
 .horni-lista {
@@ -13,114 +19,324 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px;
-    background-color: #333333d5;
+    height: 67px;
+    background: rgba(18, 18, 18, .94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, .07);
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0 40px;
+    justify-content: center
+}
+
+.logo-link {
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    text-decoration: none
+}
+
+.horni-lista-logo {
+    display: block;
+    height: 43px;
+    width: auto;
+    object-fit: contain;
+    transition: opacity .2s ease
+}
+
+.logo-link:hover .horni-lista-logo {
+    opacity: .82
 }
 
 .horni-lista-stred {
+    height: 100%;
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 2px
+}
+
+.horni-lista-stred a {
+    position: relative;
+    height: 44px;
+    padding: 0 19px;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, .62);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color .2s ease
+}
+
+.horni-lista-stred a:hover {
+    color: white
+}
+
+.horni-lista-stred a.aktivni {
+    color: white
+}
+
+.horni-lista-stred a.aktivni::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 3px;
+    width: 20px;
+    height: 2px;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: 10px
 }
 
 .horni-lista-prava {
     position: absolute;
-    right: 40px;
+    right: 18px;
+    display: flex;
+    align-items: center
 }
 
-.horni-lista a {
-    color: rgba(255, 255, 255, 0.75);
-    text-decoration: none;
-    padding: 10px 15px;
-    font-weight: 500;
-    border-radius: 5px;
-    transition: color 0.2s ease;
-}
-
-.horni-lista a:hover {
-    color: white;
-    font-weight: bold;
-}
-
-.horni-lista .aktivni {
-    color: white;
-    font-weight: bold;
-}
-
-.horni-lista .text {
-    font-weight: bold;
-}
-
-.horni-lista .uzivatel {
-    width: 42px;
-    height: 42px;
-    padding: 0;
+.uzivatel {
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, .68);
+    border: 1px solid rgba(255, 255, 255, .09);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: .2s ease
 }
 
-.horni-lista .uzivatel svg {
-    width: 24px;
-    height: 24px;
+.uzivatel:hover {
+    color: white;
+    background: rgba(255, 255, 255, .08);
+    border-color: rgba(255, 255, 255, .16)
+}
+
+.uzivatel svg {
+    width: 21px;
+    height: 21px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round
 }
 
 .uvodni-sekce {
-    margin-top: 0;
-    height: 100vh;
-    background-image: url("https://cdn.discordapp.com/attachments/1557803948122046544/1557803966098841642/IMG_0001.png?ex=6ac92180&is=6ac7d000&hm=2c37379f4cc241b0b0ca4132e19ccde33448a0e47db4ab09766b63d234965cc6&");
-    background-size: cover;
-    background-position: center;
+    position: relative;
+    min-height: 100vh;
+    padding: 150px 30px 110px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .18), rgba(0, 0, 0, .78)), url("https://cdn.discordapp.com/attachments/1371144623422046378/1556730214837526618/image.png?backend=b2&ex=6ac8853d&is=6ac733bd&hm=a319f641dd1078f2df25765bc0a416a3ec44e7e4371bd273ca0f329b09584c86&");
+    background-size: cover;
+    background-position: center
 }
 
-.tlacitka-kontejner {
+.uvodni-sekce::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, #101010);
+    pointer-events: none
+}
+
+.uvodni-obsah {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center
 }
 
-.tlacitko {
-    display: inline-block;
-    padding: 15px 30px;
+.uvodni-text {
+    max-width: 800px
+}
+
+.uvodni-text h1 {
+    margin-bottom: 12px;
+    font-size: 50px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -1px;
+    text-shadow: 0 4px 25px rgba(0, 0, 0, .45)
+}
+
+.uvodni-text p {
+    max-width: 700px;
+    margin: 0 auto 25px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, .65)
+}
+
+.tlacitko-download {
+    width: 190px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #f2f2f2;
+    color: #111;
+    border-radius: 4px;
     text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: 0.3s;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .2s ease
 }
 
-.primarni {
-    background-color: #007bff;
-    color: white;
+.tlacitko-download svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: .2s ease
 }
 
-.primarni:hover {
-    background-color: #0056b3;
+.tlacitko-download:hover {
+    background: white;
+    transform: translateY(-1px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, .25)
 }
 
-.sekundarni {
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #333;
-}
-
-.sekundarni:hover {
-    background-color: white;
+.tlacitko-download:hover svg {
+    transform: translateY(2px)
 }
 
 .zbytek-webu {
-    padding: 40px 20px;
+    min-height: 500px;
+    padding: 110px 30px 100px;
+    background: #101010
 }
-.horni-lista-logo {
-    position: absolute;
-    left: 40px;
-    height: 45px;
-    width: auto;
-    object-fit: contain;
+
+.projekt-obsah {
+    width: 60%;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center
+}
+
+.projekt-obsah h2 {
+    margin-bottom: 18px;
+    font-size: 25px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: white
+}
+
+.projekt-obsah p {
+    max-width: 700px;
+    margin: 0 auto 18px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, .65)
+}
+
+@media(max-width:900px) {
+    .projekt-obsah {
+        width: 80%
+    }
+}
+
+@media(max-width:700px) {
+    .logo-link {
+        left: 12px
+    }
+
+    .horni-lista-logo {
+        height: 37px
+    }
+
+    .horni-lista-stred {
+        gap: 0
+    }
+
+    .horni-lista-stred a {
+        padding: 0 8px;
+        font-size: 12px
+    }
+
+    .horni-lista-prava {
+        right: 7px
+    }
+
+    .uzivatel {
+        width: 38px;
+        height: 38px
+    }
+
+    .uvodni-sekce {
+        min-height: 65vh;
+        padding: 130px 20px 90px
+    }
+
+    .uvodni-text h1 {
+        font-size: 36px
+    }
+
+    .uvodni-text p {
+        font-size: 14px
+    }
+
+    .zbytek-webu {
+        padding: 85px 20px 70px
+    }
+
+    .projekt-obsah {
+        width: 100%
+    }
+
+    .projekt-obsah h2 {
+        font-size: 22px
+    }
+
+    .projekt-obsah p {
+        font-size: 14px
+    }
+}
+
+@media(max-width:480px) {
+    .horni-lista-stred a {
+        padding: 0 5px;
+        font-size: 11px
+    }
+
+    .logo-link {
+        left: 8px
+    }
+
+    .horni-lista-logo {
+        max-width: 105px;
+        height: auto
+    }
+
+    .uvodni-sekce {
+        min-height: 60vh
+    }
+
+    .uvodni-text h1 {
+        font-size: 32px
+    }
+
+    .zbytek-webu {
+        padding: 70px 20px 70px
+    }
+
+    .tlacitko-download {
+        width: 100%
+    }
 }
