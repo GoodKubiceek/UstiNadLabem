@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.horni-lista {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #333333d5;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.horni-lista-stred {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.horni-lista-prava {
+    position: absolute;
+    right: 40px;
+}
+
+.horni-lista a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: color 0.2s ease;
+}
+
+.horni-lista a:hover {
+    color: white;
+    font-weight: bold;
+}
+
+.horni-lista .aktivni {
+    color: white;
+    font-weight: bold;
+}
+
+.horni-lista .text {
+    font-weight: bold;
+}
+
+.horni-lista .uzivatel {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.horni-lista .uzivatel svg {
+    width: 24px;
+    height: 24px;
+}
+
+.uvodni-sekce {
+    margin-top: 0;
+    height: 100vh;
+    background-image: url("../IMGs/IMG_0001.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tlacitka-kontejner {
+    display: flex;
+    gap: 20px;
+}
+
+.tlacitko {
+    display: inline-block;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.primarni {
+    background-color: #007bff;
+    color: white;
+}
+
+.primarni:hover {
+    background-color: #0056b3;
+}
+
+.sekundarni {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+}
+
+.sekundarni:hover {
+    background-color: white;
+}
+
+.zbytek-webu {
+    padding: 40px 20px;
+}
+.horni-lista-logo {
+    position: absolute;
+    left: 40px;
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
